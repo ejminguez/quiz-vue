@@ -3,8 +3,8 @@
 
 <template>
     <div>
-        <nav>
-            <ul class="flex gap-4">
+        <nav class="px-2">
+            <ul class="flex justify-between lg:justify-center lg:gap-4">
                 <li>
                     <RouterLink to="/">Home</RouterLink>
                 </li>
@@ -16,6 +16,9 @@
                 </li>
                 <li>
                     <RouterLink to="/profile/errol">Profile</RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/leaderboard">Leaderboard</RouterLink>
                 </li>
             </ul>
         </nav>
