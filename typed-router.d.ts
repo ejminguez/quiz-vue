@@ -24,6 +24,6 @@ declare module 'vue-router/auto-routes' {
     '/leaderboard/': RouteRecordInfo<'/leaderboard/', '/leaderboard', Record<never, never>, Record<never, never>>,
     '/profile/[username]': RouteRecordInfo<'/profile/[username]', '/profile/:username', { username: ParamValue<true> }, { username: ParamValue<false> }>,
     '/quiz/': RouteRecordInfo<'/quiz/', '/quiz', Record<never, never>, Record<never, never>>,
-    '/quiz/[id]': RouteRecordInfo<'/quiz/[id]', '/quiz/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/quiz/[title]': RouteRecordInfo<'/quiz/[title]', '/quiz/:title', { title: ParamValue<true> }, { title: ParamValue<false> }>,
   }
 }

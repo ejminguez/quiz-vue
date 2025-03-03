@@ -9,7 +9,7 @@ CREATE TABLE "USER" (
 
 -- Create QUIZ table
 CREATE TABLE "QUIZ" (
-    quiz_id SERIAL PRIMARY KEY,
+    quiz_id VARCHAR(36) PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     description TEXT,
     created_by VARCHAR(36) NOT NULL,
@@ -22,16 +22,16 @@ CREATE TABLE "QUIZ" (
 
 -- Create QUESTION table
 CREATE TABLE "QUESTION" (
-    question_id SERIAL PRIMARY KEY,
+    question_id VARCHAR(36) PRIMARY KEY,
     question_text TEXT NOT NULL,
-    quiz_id INTEGER NOT NULL,
+    quiz_id VARCHAR(36) NOT NULL,
     FOREIGN KEY (quiz_id) REFERENCES "QUIZ"(quiz_id) ON DELETE CASCADE
 );
 
 -- Create CHOICE table
 CREATE TABLE "CHOICE" (
-    choice_id SERIAL PRIMARY KEY,
-    question_id INTEGER NOT NULL,
+    choice_id VARCHAR(36) PRIMARY KEY,
+    question_id VARCHAR(36) NOT NULL,
     choice_text TEXT NOT NULL,
     is_correct BOOLEAN NOT NULL DEFAULT FALSE,
     FOREIGN KEY (question_id) REFERENCES "QUESTION"(question_id) ON DELETE CASCADE
@@ -39,9 +39,9 @@ CREATE TABLE "CHOICE" (
 
 -- Create QUIZ_ATTEMPT table
 CREATE TABLE "QUIZ_ATTEMPT" (
-    attempt_id SERIAL PRIMARY KEY,
+    attempt_id VARCHAR(36) PRIMARY KEY,
     user_id VARCHAR(36) NOT NULL,
-    quiz_id INTEGER NOT NULL,
+    quiz_id VARCHAR(36) NOT NULL,
     start_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     end_time TIMESTAMP,
     total_score INTEGER DEFAULT 0,
@@ -52,10 +52,10 @@ CREATE TABLE "QUIZ_ATTEMPT" (
 
 -- Create QUESTION_RESPONSE table
 CREATE TABLE "QUESTION_RESPONSE" (
-    response_id SERIAL PRIMARY KEY,
-    attempt_id INTEGER NOT NULL,
-    question_id INTEGER NOT NULL,
-    selected_choice_id INTEGER,
+    response_id VARCHAR(36) PRIMARY KEY,
+    attempt_id VARCHAR(36) NOT NULL,
+    question_id VARCHAR(36) NOT NULL,
+    selected_choice_id VARCHAR(36),
     score INTEGER NOT NULL DEFAULT 0,
     FOREIGN KEY (attempt_id) REFERENCES "QUIZ_ATTEMPT"(attempt_id) ON DELETE CASCADE,
     FOREIGN KEY (question_id) REFERENCES "QUESTION"(question_id) ON DELETE CASCADE,
