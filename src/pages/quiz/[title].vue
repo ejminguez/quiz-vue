@@ -3,7 +3,6 @@ import { useRoute } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import { supabase } from '@/lib/supabaseClient';
 import type { Tables } from '../../../database/types';
-import Username from '../profile/[username].vue';
 
 const route = useRoute();
 const title = (route.params as { title: string }).title;
@@ -23,10 +22,10 @@ onMounted(async () => {
   <div class="text-center grid gap-8">
     <h1>Ready to take <span class="font-bold">{{ quiz?.title }}</span> ?</h1>
     <p v-if="loading">Loading...</p>
-    <div v-else class="grid gap-4 bg-yellow-200 p-8">
+    <div v-else class="grid gap-4 bg-yellow-50 p-8 shadow-md">
         <p>Quiz: <strong>{{ quiz?.title }}</strong></p>
         <p>Description: {{ quiz?.description }}</p>
-        <p>Time Limit: {{ quiz?.time_limit }}</p>
+        <p>Time Limit: {{ quiz?.time_limit }} mins</p>
         <button class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Take Quiz
         </button>

@@ -29,7 +29,7 @@ const loading = ref(true);
             <ol class="grid gap-4" type="1">
                 <li v-for="quiz in quiz" :key="quiz.quiz_id">
                     <RouterLink :to="`/quiz/${quiz.title}`">
-                        <p class="underline-offset-2 hover:underline">{{ quiz.title }}</p>
+                        <p class="underline-offset-8 hover:underline">{{ quiz.title }}</p>
                     </RouterLink>
                 </li>
             </ol>
