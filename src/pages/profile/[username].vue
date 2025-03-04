@@ -1,46 +1,26 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
-import { ref, onMounted } from 'vue';
-import { supabase } from '@/lib/supabaseClient';
-import type { Tables } from '../../../database/types';
-
-const route = useRoute();
-const username = (route.params as { username: string }).username;
-
-const user = ref<Tables<'USER'> | null>(null);
-const quizzes = ref<Tables<'QUIZ'>[]>([]);
+import { useIndividualUserStore } from '@/stores/individualUserStore';
+import { onMounted, ref } from 'vue';
+const individualUserStore = useIndividualUserStore();
 const loading = ref(true);
-
-onMounted(async () => {
-  const { data: userData, error: userError } = await supabase.from('USER').select().eq('username', username).single();
-  if (userError) console.log('error', userError);
-  if (userData) {
-    user.value = userData;
-    const userId = userData.user_id;
-
-    const { data: quizzesData, error: quizzesError } = await supabase.from('QUIZ').select().eq('created_by', userId);
-    if (quizzesError) console.log('error', quizzesError);
-    if (quizzesData) quizzes.value = quizzesData;
-    console.log(userData);
-    console.log(quizzesData);
-  }
-
+onMounted(() => {
+  individualUserStore.fetchIndividualUser();
   loading.value = false;
-});
+})
 </script>
 
 <template>
   <div class="text-center">
     <h1>WELCOME!</h1>
-    <p v-if="loading">Loading...</p>
+    <p v-if="individualUserStore.loading">Loading...</p>
     <div v-else>
-      <p>Username: <strong>{{ user?.username }}</strong></p>
-      <p>Email Address: {{ user?.email_address }}</p>
+      <p>Username: <strong>{{ individualUserStore.user?.username }}</strong></p>
+      <p>Email Address: {{ individualUserStore.user?.email_address }}</p>
     </div>
-    <div v-if="quizzes.length">
+    <div v-if="individualUserStore.quizzes.length">
       <h2>Quizzes Created:</h2>
       <ul>
-        <li v-for="quiz in quizzes" :key="quiz.quiz_id">
+        <li v-for="quiz in individualUserStore.quizzes" :key="quiz.quiz_id">
           <RouterLink :to="`/quiz/${quiz.title}`">
             <p class="underline-offset-4 hover:underline">{{ quiz.title }}</p>
           </RouterLink>
