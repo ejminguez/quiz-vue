@@ -9,6 +9,7 @@ const title = (route.params as { title: string }).title;
 const quiz = ref<Tables<'QUIZ'> | null>(null);
 const user = ref<Tables<'USER'> | null>(null);
 const loading = ref(true);
+const scrollToTop = () => window.scrollTo(0, 0);
 
 onMounted(async () => {
   const { data: quizData, error: quizError } = await supabase.from('QUIZ').select().eq('title', title).single();
@@ -24,25 +25,25 @@ onMounted(async () => {
   }
 
   loading.value = false;
+  scrollToTop();
 });
 </script>
 
 <template>
   <div class="text-center grid gap-8">
-    <h1>Ready to take <span class="font-bold">{{ quiz?.title }}</span> ?</h1>
     <p v-if="loading">Loading...</p>
-    <div v-else class="grid gap-4 bg-yellow-50 p-8 shadow-md">
-      <p>Quiz: <strong>{{ quiz?.title }}</strong></p>
-      <p>Description: {{ quiz?.description }}</p>
-      <p>Created by: 
+    <div v-else class="grid gap-4 p-8 shadow-md">
+      <p><strong>Quiz: </strong> {{ quiz?.title }}</p>
+      <p><strong>Description:</strong> <span class="italic"> {{ quiz?.description }}</span></p>
+      <p><strong>Created by: </strong> 
         <RouterLink :to="`/profile/${user?.username}`">
-          <span class="underline-offset-4 hover:underline">{{ user?.username }}</span>
+          <span class="hover:font-bold transition-all duration-200">{{ user?.username }}</span>
         </RouterLink>
       </p>
-      <p>Time Limit: {{ quiz?.time_limit }} mins</p>
-      <button class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <p><strong>Time Limit: </strong> {{ quiz?.time_limit }} mins</p>
+      <RouterLink :to="`/quiz/take/${quiz?.title}`" class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Take Quiz
-      </button>
+      </RouterLink>
     </div>
   </div>
 </template>

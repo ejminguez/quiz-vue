@@ -6,8 +6,8 @@ console.log(supabase)
 </script>
 
 <template>
-  <Navbar class="sticky top-[1%] lg:top-[3%]" />
-  <main class="min-h-[600px] place-items-center pt-12">
+  <Navbar class="sticky top-0 py-5 shadow-sm bg-slate-50" />
+  <main class="min-h-screen place-items-center my-12">
     <RouterView />
   </main>
 </template>

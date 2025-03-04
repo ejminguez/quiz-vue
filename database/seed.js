@@ -16,6 +16,7 @@ const seedQuiz = async (numEntries) => {
       if (userError) throw userError
 
       const randomUser = users[Math.floor(Math.random() * users.length)]
+      
       entryArr.push({
         quiz_id: faker.string.uuid(),
         title: faker.word.words(3),
@@ -37,4 +38,4 @@ const seedQuiz = async (numEntries) => {
   }
 }
 
-await seedQuiz(5)
+await seedQuiz(10)

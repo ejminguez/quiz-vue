@@ -30,4 +30,4 @@ const seedUsers = async (numEntries) => {
   }
 }
 
-await seedUsers(5)
+await seedUsers(10)
