@@ -18,8 +18,8 @@ const seedQuiz = async (numEntries) => {
       const randomUser = users[Math.floor(Math.random() * users.length)]
       entryArr.push({
         quiz_id: faker.string.uuid(),
-        title: faker.lorem.words(3),
-        description: faker.lorem.sentence(3),
+        title: faker.word.words(3),
+        description: faker.word.words({count: {min: 5, max: 10}}),
         created_by: randomUser.user_id,
         created_at: faker.date.recent(),
         is_timed: faker.datatype.boolean(),
@@ -37,4 +37,4 @@ const seedQuiz = async (numEntries) => {
   }
 }
 
-await seedQuiz(6)
+await seedQuiz(5)

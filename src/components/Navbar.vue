@@ -21,13 +21,13 @@ const route = useRoute();
                 <li>
                     <RouterLink :to="'/quiz'" :class="{ 'underline': route.path === '/quiz' }" class="flex items-center gap-2">
                         <FontAwesomeIcon :icon="faPenNib" />
-                        Quizzes
+                        Quiz
                     </RouterLink>
                 </li>
                 <li>
                     <RouterLink :to="'/leaderboard'" :class="{ 'underline': route.path === '/leaderboard' }" class="flex items-center gap-2">
                         <FontAwesomeIcon :icon="faRankingStar" />
-                        Leaderboard
+                        Leaderboards
                     </RouterLink>
                 </li>
                 <li>

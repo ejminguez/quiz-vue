@@ -1,24 +1,23 @@
 <script lang="ts" setup>
-import { supabase } from '@/lib/supabaseClient';
-import { ref } from 'vue'
-import type { Tables } from '../../../database/types';
+import { useQuizStore } from '@/stores/quizStore';
+import { ref, onMounted } from 'vue';
 
-const quiz = ref<Tables<'QUIZ'>[]>([]);
+const quizStore = useQuizStore();
 const loading = ref(true);
 
-// Self-invoking function to fetch data wowzers
-(async () => {
-    const { data, error } = await supabase.from('QUIZ').select();
-    if (error) console.log("error", error);
-    if (data) quiz.value = data;
+onMounted(async () => {
+    await quizStore.fetchQuiz();
     loading.value = false;
-    console.log("data", data);
-})()
-
+});
 </script>
 
 <template>
     <section class="grid gap-4 text-center">
+        <div>
+            <RouterLink to="/edit">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Create a Quiz</button>
+            </RouterLink>
+        </div>
         <div>
             <h1 class="font-bold">QUIZZES</h1>
         </div>
@@ -27,7 +26,7 @@ const loading = ref(true);
         </div>
         <div v-else>
             <ol class="grid gap-4" type="1">
-                <li v-for="quiz in quiz" :key="quiz.quiz_id">
+                <li v-for="quiz in quizStore.quiz" :key="quiz.quiz_id">
                     <RouterLink :to="`/quiz/${quiz.title}`">
                         <p class="underline-offset-8 hover:underline">{{ quiz.title }}</p>
                     </RouterLink>
