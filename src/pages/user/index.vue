@@ -19,6 +19,9 @@ const signOut = async () => {
 
 onMounted(async () => {
     await loggedInUserStore.fetchLoggedInUser();
+    if (!loggedInUserStore.user) {
+        router.push('/user/create');
+    }
 })
 
 </script>

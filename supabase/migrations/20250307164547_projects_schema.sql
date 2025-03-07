@@ -6,8 +6,6 @@ CREATE TABLE "USER" (
     user_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     username VARCHAR(50) NOT NULL UNIQUE,
     email_address VARCHAR(100) NOT NULL UNIQUE,
-    is_authorized BOOLEAN NOT NULL DEFAULT FALSE,
-    password_hash VARCHAR(255) NOT NULL
 );
 
 -- Create QUIZ table

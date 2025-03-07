@@ -199,22 +199,16 @@ export type Database = {
       USER: {
         Row: {
           email_address: string
-          is_authorized: boolean
-          password_hash: string
           user_id: string
           username: string
         }
         Insert: {
           email_address: string
-          is_authorized?: boolean
-          password_hash: string
           user_id?: string
           username: string
         }
         Update: {
           email_address?: string
-          is_authorized?: boolean
-          password_hash?: string
           user_id?: string
           username?: string
         }
