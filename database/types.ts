@@ -17,7 +17,7 @@ export type Database = {
           question_id: string
         }
         Insert: {
-          choice_id: string
+          choice_id?: string
           choice_text: string
           is_correct?: boolean
           question_id: string
@@ -45,7 +45,7 @@ export type Database = {
           quiz_id: string
         }
         Insert: {
-          question_id: string
+          question_id?: string
           question_text: string
           quiz_id: string
         }
@@ -75,7 +75,7 @@ export type Database = {
         Insert: {
           attempt_id: string
           question_id: string
-          response_id: string
+          response_id?: string
           score?: number
           selected_choice_id?: string | null
         }
@@ -126,7 +126,7 @@ export type Database = {
           created_by: string
           description?: string | null
           is_timed?: boolean
-          quiz_id: string
+          quiz_id?: string
           randomize_questions?: boolean
           time_limit?: number | null
           title: string
@@ -162,7 +162,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
-          attempt_id: string
+          attempt_id?: string
           completed?: boolean
           end_time?: string | null
           quiz_id: string
@@ -208,7 +208,7 @@ export type Database = {
           email_address: string
           is_authorized?: boolean
           password_hash: string
-          user_id: string
+          user_id?: string
           username: string
         }
         Update: {

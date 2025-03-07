@@ -21,7 +21,8 @@ declare module 'vue-router/auto-routes' {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
     '/[...catchAll]': RouteRecordInfo<'/[...catchAll]', '/:catchAll(.*)', { catchAll: ParamValue<true> }, { catchAll: ParamValue<false> }>,
     '/about': RouteRecordInfo<'/about', '/about', Record<never, never>, Record<never, never>>,
-    '/auth/': RouteRecordInfo<'/auth/', '/auth', Record<never, never>, Record<never, never>>,
+    '/auth/signIn': RouteRecordInfo<'/auth/signIn', '/auth/signIn', Record<never, never>, Record<never, never>>,
+    '/auth/signUp': RouteRecordInfo<'/auth/signUp', '/auth/signUp', Record<never, never>, Record<never, never>>,
     '/edit/': RouteRecordInfo<'/edit/', '/edit', Record<never, never>, Record<never, never>>,
     '/leaderboard/': RouteRecordInfo<'/leaderboard/', '/leaderboard', Record<never, never>, Record<never, never>>,
     '/profile/[username]': RouteRecordInfo<'/profile/[username]', '/profile/:username', { username: ParamValue<true> }, { username: ParamValue<false> }>,
@@ -29,5 +30,6 @@ declare module 'vue-router/auto-routes' {
     '/quiz/[...catchAll]': RouteRecordInfo<'/quiz/[...catchAll]', '/quiz/:catchAll(.*)', { catchAll: ParamValue<true> }, { catchAll: ParamValue<false> }>,
     '/quiz/[title]': RouteRecordInfo<'/quiz/[title]', '/quiz/:title', { title: ParamValue<true> }, { title: ParamValue<false> }>,
     '/quiz/take/[title]': RouteRecordInfo<'/quiz/take/[title]', '/quiz/take/:title', { title: ParamValue<true> }, { title: ParamValue<false> }>,
+    '/user/': RouteRecordInfo<'/user/', '/user', Record<never, never>, Record<never, never>>,
   }
 }

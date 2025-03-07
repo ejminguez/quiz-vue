@@ -21,7 +21,7 @@ const route = useRoute();
                     </li>
                     <li>
                         <RouterLink :to="'/quiz'" :class="{ 'underline': route.path === '/quiz' }"
-                        class="flex items-center gap-2 hover:underline underline-offset-8">
+                            class="flex items-center gap-2 hover:underline underline-offset-8">
                             <FontAwesomeIcon :icon="faPenNib" />
                             Quiz
                         </RouterLink>
@@ -35,14 +35,15 @@ const route = useRoute();
                     </li>
                 </div>
                 <div class="flex gap-4 items-center">
-                    <div class="flex gap-2 items-center border border-gray-300 px-4 py-1 rounded-md">
+                    <div v-if="route.path === '/quiz'"
+                        class="flex gap-2 items-center border border-gray-300 px-4 py-1 rounded-md">
                         <FontAwesomeIcon :icon="faMagnifyingGlass" />
                         <input type="text" placeholder="Search" class="p-1 focus:outline-none" />
                     </div>
                     <li>
-                        <RouterLink :to="'/profile/errol'" :class="{ 'underline': route.path === '/profile/errol' }"
-                            class="flex items-center gap-2 hover:underline underline-offset-8">
-                            <div class="border-[1px] w-10 h-10 rounded-full flex justify-center items-center bg-white hover:bg-slate-300 transition-all duration-200">
+                        <RouterLink :to="'/user'" class="flex items-center gap-2 hover:underline underline-offset-8">
+                            <div
+                                class="border-[1px] w-10 h-10 rounded-full flex justify-center items-center bg-white hover:bg-slate-300 transition-all duration-200">
                                 <FontAwesomeIcon :icon="faUser" />
                             </div>
                         </RouterLink>

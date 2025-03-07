@@ -32,7 +32,7 @@ onMounted(async () => {
 <template>
   <div class="text-center grid gap-8">
     <p v-if="loading">Loading...</p>
-    <div v-else class="grid gap-4 p-8 shadow-md">
+    <div v-else class="grid gap-4 p-8 shadow-md bg-white rounded-lg">
       <p><strong>Quiz: </strong> {{ quiz?.title }}</p>
       <p><strong>Description:</strong> <span class="italic"> {{ quiz?.description }}</span></p>
       <p><strong>Created by: </strong> 
