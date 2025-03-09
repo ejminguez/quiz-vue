@@ -10,6 +10,7 @@ const email = ref("");
 const user = useAuthStore();
 
 const createUser = async () => {
+    
     if (!username.value || !email.value) {
         window.alert('Username and email are required');
         return;

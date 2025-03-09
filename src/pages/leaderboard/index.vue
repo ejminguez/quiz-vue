@@ -9,21 +9,33 @@ const loading = ref(true);
 
 onMounted(async () => {
   await userStore.fetchUsers();
+  await delay(500);
   loading.value = false;
 });
+
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 </script>
 
 <template>
   <section class="flex flex-col gap-8 text-center w-full">
     <div class="flex items-center gap-2 mx-auto">
       <span>----</span>
-      <FontAwesomeIcon :icon="faStar"/>
+      <FontAwesomeIcon :icon="faStar" />
       <h1 class="font-bold text-3xl">LEADERBOARDS</h1>
-      <FontAwesomeIcon :icon="faStar"/>
+      <FontAwesomeIcon :icon="faStar" />
       <span>----</span>
     </div>
-    <div v-if="loading">
-      <p>Loading...</p>
+    <div v-if="loading" class="w-[30%] mx-auto">
+      <div class="bg-white rounded-lg shadow-md p-4 animate-pulse">
+        <!-- Header -->
+        <div class="w-2/3 h-4 bg-gray-300 rounded mb-2"></div>
+        <!-- Body -->
+        <div class="w-full h-8 bg-gray-300 rounded mb-2"></div>
+        <div class="w-full h-8 bg-gray-300 rounded mb-2"></div>
+        <div class="w-1/2 h-8 bg-gray-300 rounded"></div>
+      </div>
     </div>
     <div v-else>
       <ul class="flex flex-col w-[30%] mx-auto">

@@ -7,7 +7,7 @@ import { supabase } from '@/lib/supabaseClient'
 const guestRoutes = ['/auth/signIn', '/auth/signUp']
 
 // Define routes that require authentication (use regex for dynamic paths)
-const protectedRoutes = ['/quiz/take/:id', '/user', '/edit']
+const protectedRoutes = ['/quiz/take/:id', '/user', '/edit', '/user/create']
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +26,7 @@ router.beforeEach(async (to, from, next) => {
     next('/') // Redirect logged-in users away from auth pages
   } 
   // Check if the route requires authentication
-  else if (to.matched.some(route => protectedRoutes.some(p => to.path.startsWith(p.replace(':id', '')))) && !authStore.user) {
+  else if (to.matched.some(() => protectedRoutes.some(p => to.path.startsWith(p.replace(':id', '')))) && !authStore.user) {
     next('/auth/signIn') // Redirect guests to sign-in
   } 
   else {

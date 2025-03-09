@@ -3,21 +3,34 @@ import { useIndividualUserStore } from '@/stores/individualUserStore';
 import { onMounted, ref } from 'vue';
 const individualUserStore = useIndividualUserStore();
 const loading = ref(true);
-onMounted(() => {
+onMounted(async () => {
   individualUserStore.fetchIndividualUser();
+  await delay(700)
   loading.value = false;
+  function delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 })
 </script>
 
 <template>
-  <div class="text-center grid gap-8">
+  <div class="text-center grid gap-8 w-full">
     <h1 class="text-3xl">WELCOME!</h1>
-    <p v-if="individualUserStore.loading">Loading...</p>
-    <div v-else>
+    <div v-if="individualUserStore.loading" class="w-[30%] mx-auto">
+                <div class="bg-white rounded-lg shadow-md p-4 animate-pulse">
+                    <!-- Header -->
+                    <div class="w-2/3 h-4 bg-gray-300 rounded mb-2"></div>
+                    <!-- Body -->
+                    <div class="w-full h-8 bg-gray-300 rounded mb-2"></div>
+                    <div class="w-full h-8 bg-gray-300 rounded mb-2"></div>
+                    <div class="w-1/2 h-8 bg-gray-300 rounded"></div>
+                </div>
+        </div>
+    <div v-else class="w-[30%] mx-auto">
       <p>Username: <strong>{{ individualUserStore.user?.username }}</strong></p>
       <p>Email Address: {{ individualUserStore.user?.email_address }}</p>
     </div>
-    <div v-if="individualUserStore.quizzes.length" class="grid gap-2">
+    <div v-if="individualUserStore.quizzes.length" class="grid gap-2 w-[30%] mx-auto">
       <h2>Quizzes Created:</h2>
       <ul>
         <li v-for="quiz in individualUserStore.quizzes" :key="quiz.quiz_id" class="border py-2 px-8">
