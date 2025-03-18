@@ -6,8 +6,10 @@ import type { Tables } from "../../database/types";
 export const useLoggedInUserStore = defineStore("loggedInUserStore", {
     state: () => {
         const user = ref<Tables<"USER"> | null>(null);
+        const quiz = ref<Tables<"QUIZ">[] | null>(null);
         return {
             user,
+            quiz,
         };
     },
     actions: {
@@ -16,9 +18,12 @@ export const useLoggedInUserStore = defineStore("loggedInUserStore", {
             const userID = user?.id;
             if (userID) {
                 const { data: userData, error: userError } = await supabase.from("USER").select().eq("user_id", userID).single();
+                const { data: quizData, error: quizError } = await supabase.from("QUIZ").select().eq("created_by", userID);
                 if (userError) {
                     console.error("Error fetching user:", userError);
+                    console.error("Error fetching quiz:", quizError);
                 } else if (userData) {
+                    this.quiz = quizData;
                     this.user = userData
             }
         }

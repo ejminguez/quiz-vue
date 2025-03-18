@@ -8,7 +8,7 @@ const scrollToTop = () => window.scrollTo(0, 0);
 
 onMounted(async () => {
     await quizStore.fetchQuiz();
-    await delay(500)
+    await delay(100)
     loading.value = false;
     scrollToTop();
 
@@ -21,7 +21,7 @@ onMounted(async () => {
 <template>
     <section class="grid gap-8 text-center w-full">
         <div>
-            <RouterLink to="/edit">
+            <RouterLink to="/quiz/create">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Create a Quiz</button>
             </RouterLink>
         </div>
@@ -39,8 +39,8 @@ onMounted(async () => {
                 </div>
         </div>
         <div v-else>
-            <ul class="flex flex-col w-[30%] mx-auto">
-                <li v-for="quiz in quizStore.quiz" :key="quiz.quiz_id" class="border-[1px] py-2 px-8">
+            <ul class="flex flex-col w-[30%] mx-auto gap-4">
+                <li v-for="quiz in quizStore.quiz" :key="quiz.quiz_id" class="border-[1px] py-2 px-8 rounded-lg">
                     <RouterLink :to="`/quiz/${quiz.title}`">
                         <p class="hover:font-bold transition-all duration-200">{{ quiz.title }}</p>
                     </RouterLink>

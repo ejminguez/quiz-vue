@@ -9,8 +9,8 @@ const loading = ref(true);
 
 onMounted(async () => {
   await userStore.fetchUsers();
-  await delay(500);
-  loading.value = false;
+  await delay(100);
+  loading.value = false
 });
 
 function delay(ms: number) {
