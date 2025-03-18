@@ -16,6 +16,7 @@ onMounted(async () => {
 <template>
   <div class="text-center grid gap-8 w-full">
     <h1 class="text-3xl">WELCOME!</h1>
+    <!-- loading state -->
     <div v-if="individualUserStore.loading" class="w-[30%] mx-auto">
                 <div class="bg-white rounded-lg shadow-md p-4 animate-pulse">
                     <!-- Header -->

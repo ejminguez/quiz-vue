@@ -30,20 +30,23 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="text-center grid gap-8">
-    <p v-if="loading">Loading...</p>
-    <div v-else class="grid gap-4 p-8 shadow-md bg-white rounded-lg">
-      <p><strong>Quiz: </strong> {{ quiz?.title }}</p>
-      <p><strong>Description:</strong> <span class="italic"> {{ quiz?.description }}</span></p>
-      <p><strong>Created by: </strong> 
-        <RouterLink :to="`/profile/${user?.username}`">
-          <span class="hover:font-bold transition-all duration-200">{{ user?.username }}</span>
+  <section class="w-full">
+    <div class="text-center grid gap-8 w-[30%] mx-auto">
+      <p v-if="loading">Loading...</p>
+      <div v-else class="grid gap-4 p-8 shadow-md bg-white rounded-lg">
+        <p><strong>Quiz: </strong> {{ quiz?.title }}</p>
+        <p><strong>Description:</strong> <span class="italic"> {{ quiz?.description }}</span></p>
+        <p><strong>Created by: </strong>
+          <RouterLink :to="`/profile/${user?.username}`">
+            <span class="hover:font-bold transition-all duration-200">{{ user?.username }}</span>
+          </RouterLink>
+        </p>
+        <p><strong>Time Limit: </strong> {{ quiz?.time_limit }} mins</p>
+        <RouterLink :to="`/quiz/take/${quiz?.title}`"
+          class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Take Quiz
         </RouterLink>
-      </p>
-      <p><strong>Time Limit: </strong> {{ quiz?.time_limit }} mins</p>
-      <RouterLink :to="`/quiz/take/${quiz?.title}`" class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Take Quiz
-      </RouterLink>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
