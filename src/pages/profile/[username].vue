@@ -33,8 +33,8 @@ onMounted(async () => {
     </div>
     <div v-if="individualUserStore.quizzes.length" class="grid gap-2 w-[30%] mx-auto">
       <h2>Quizzes Created:</h2>
-      <ul>
-        <li v-for="quiz in individualUserStore.quizzes" :key="quiz.quiz_id" class="border py-2 px-8">
+      <ul class="grid gap-4">
+        <li v-for="quiz in individualUserStore.quizzes" :key="quiz.quiz_id" class="border py-2 px-8 rounded-lg">
           <RouterLink :to="`/quiz/${quiz.title}`">
             <p class="hover:font-bold transition-all duration-200">{{ quiz.title }}</p>
           </RouterLink>

@@ -38,8 +38,8 @@ function delay(ms: number) {
       </div>
     </div>
     <div v-else>
-      <ul class="flex flex-col w-[30%] mx-auto">
-        <li v-for="user in userStore.users" :key="user.user_id" class="border px-20 py-2">
+      <ul class="flex flex-col w-[30%] mx-auto gap-8">
+        <li v-for="user in userStore.users" :key="user.user_id" class="border px-20 py-2 rounded-lg">
           <RouterLink :to="`/profile/${user.username}`">
             <p class="hover:font-bold transition-all duration-200">{{ user.username }}</p>
           </RouterLink>
