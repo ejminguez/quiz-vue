@@ -1,7 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import {createRouter} from 'vue-router'
+import { createWebHistory } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
-import { useAuthStore } from '@/stores/authStore'
-import { supabase } from '@/lib/supabaseClient'
+import { useAuthStore } from '../stores/authStore'
+import { supabase } from '../lib/supabaseClient'
 
 // Define routes that should be guest-only
 const guestRoutes = ['/auth/signIn', '/auth/signUp']

@@ -12,6 +12,7 @@ interface Question {
 }
 
 const questions = ref<Question[]>([]);
+let isCorrect = ref(false);
 
 // Add a new question with an empty options array
 const addQuestion = () => {
@@ -47,7 +48,7 @@ const createQuestions = () => {
       <div class="grid gap-8">
         <!-- Loop through questions -->
         <div v-for="(question, qIndex) in questions" :key="qIndex"
-          class="border-[1px] px-4 py-8 rounded-md shadow-md bg-pink-100">
+          class="border-[1px] px-4 py-8 rounded-md shadow-md">
           <!-- Question Input -->
           <div class="flex gap-4 items-start">
             <textarea v-model="question.text" placeholder="Enter your question"
@@ -63,6 +64,10 @@ const createQuestions = () => {
             <div v-for="(option, oIndex) in question.options" :key="oIndex" class="flex items-center gap-4">
               <input v-model="question.options[oIndex]" type="text" placeholder="Enter an option"
                 class="border-[1px] rounded-md p-2 w-full bg-white" />
+                <div class="flex gap-2 items-center">
+                  <input type="checkbox" class="cursor-pointer" name="isCorrect" v-model="isCorrect"/>
+                  <label for="isCorrect">correct</label>
+                </div>
               <button @click.prevent="removeOption(qIndex, oIndex)"
                 class="text-red-500 hover:text-red-700 cursor-pointer hover:scale-125 transition-all duration-300">
                 <font-awesome-icon :icon="faTimes" />

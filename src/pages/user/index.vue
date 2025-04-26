@@ -82,7 +82,7 @@ function delay(ms: number) {
 
             <div class="grid gap-4">
                 <!-- create a quiz -->
-                <RouterLink to="/quiz/edit"
+                <RouterLink to="/quiz/create"
                     class="w-[50%] hover:bg-green-200 py-[9px] border-[1px] rounded-lg cursor-pointer transition-all duration-200 text-sm mx-auto">
                     Create a quiz</RouterLink>
 

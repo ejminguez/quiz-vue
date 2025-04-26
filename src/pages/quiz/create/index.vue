@@ -38,7 +38,7 @@ const createQuiz = async () => {
     return;
   } else {
     console.log(data);
-    router.push(`/quiz/create/${quizTitle.value}`);
+    router.push(`/quiz/edit/${quizTitle.value}`);
   }
 };
 </script>
